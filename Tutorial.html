@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="/Users/rajakumar/Desktop/Full stack html:css:bootstarp/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>MTX FUN</title>
+        <style>
+            body{
+            background-image: url('2846378-min.jpg');
+            background-size:cover;
+            background-repeat: no-repeat;
+        }
+            .chatbox{
+                box-shadow: 1px 2px 6px 0px;
+                border-radius: 10px;
+                margin-top: 20px;
+                background-color: antiquewhite;
+                margin-bottom: 10px;
+                }
+                .Next-button{
+                border-radius: 10px;
+                width: 90px;
+                height: 40px;
+                background-color: green;
+                color: white;
+            }
+            .skip-button{
+                border-radius: 10px;
+                width: 90px;
+                height: 40px;
+                background-color: burlywood;
+                color: white;
+            }
+            a{
+                color: white;
+            }
+        </style>
+    </head>
+    <body ><div class="container">
+        <h1 style="color:white"> Tutorial for Game</h1></div>
+        <div id="main">
+
+        </div>
+        <div class="container">
+            <button class="Next-button" onclick="Next()" id="NextButton">Next</button>
+            <a href="game.html"><button class="skip-button">Skip</button></a>
+        </div>
+    </body>
+    <script>
+        var arr = ['Hi, Are you Ready for game. I quickly show you how to play.','This is platform that give you support.You have to jump from this base','You have to jump from one platform to another. To keep alive. As platform disapper from your screen your score increases.',
+    'You can Use left arrow button for left movement.','You can Use right arrow button for right movement.','You can Use up arrow button to stop movement movement.','You can Use Down arrow button to drop avatar fast movement movement.']
+        var body = document.getElementById("main");
+        
+        var count=0
+        function Next(){
+            if(arr.length>count){
+            element = document.createElement("div");
+            element.classList.add("container");
+            element.classList.add("chatbox");
+
+            image = document.createElement("img");
+            image.src = "test3.png"
+            element.appendChild(image);
+
+            para = document.createElement("p");
+            para.innerText = arr[count];
+            element.appendChild(para);
+            if(count==1){
+                image1 = document.createElement("img");
+                image1.src = "image10.png"
+                element.appendChild(image1);
+                // element.appendChild('<img src="image10.png"/>')
+            }
+            body.appendChild(element);
+            count++;
+        }
+            else{
+                var NextButton = document.getElementById('NextButton');
+                NextButton.innerHTML="<a href='game.html'>GO</a>";
+            }
+
+        }
+        Next();
+    </script>
+</html>

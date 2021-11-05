@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded",() => {
     let Bases  = [];
     let score = 0;
     let BaseMotion;
+    
+    //Creating base
     class Base{
         constructor(bottomspace){
             this.left = Math.random()*315;
@@ -23,6 +25,8 @@ document.addEventListener("DOMContentLoaded",() => {
             BaseElement.appendChild(this.element);
         }
     }
+    
+    //Creating platform for basr
     function CreatePlatforms(){
         for (var i = 0; i<BasesCount; i++){
             let BaseGap = 600 / BasesCount;
@@ -32,7 +36,8 @@ document.addEventListener("DOMContentLoaded",() => {
             // console.log(Bases);
         }
     }
-
+    
+    //Create Avatar
     function CreateImposter(){
         BaseElement.appendChild(imposter);
         imposter.classList.add("Imposter");
@@ -40,7 +45,7 @@ document.addEventListener("DOMContentLoaded",() => {
         imposter.style.left = imposterLeftSpace+ "px";
         imposter.style.bottom = Bases[0].bottom + "px";
     }
-
+   //Motion in The base in downward direction
     function moveBase(){
 
         Bases.forEach(BaseIndex=>{
@@ -58,6 +63,8 @@ document.addEventListener("DOMContentLoaded",() => {
         scoretext.innerText="Your Score is : "+ score;
     }
     let downmotion;
+    
+    //Jump Avatar when touching any platform
     function jump(){
         clearInterval(downmotion);
         isjumping = true;
@@ -71,7 +78,7 @@ document.addEventListener("DOMContentLoaded",() => {
             }
         },20)
     }
-
+    //Falling after jumping
     function fall(speed = 30){
         clearInterval(upmotion);
         isjumping = false;
@@ -98,7 +105,7 @@ document.addEventListener("DOMContentLoaded",() => {
             // console.log(imposter.style.left,imposter.style.bottom);
         },speed)
     }
-
+    //Game over Function
     function GameOverText(){
         clearInterval(downmotion);
         clearInterval(BaseMotion);
@@ -108,7 +115,7 @@ document.addEventListener("DOMContentLoaded",() => {
         var scoretext = document.getElementById("score");
         scoretext.innerText="Better Luck Next Time ! Your Score is : "+ score;
     }
-
+    //ceating motion in Impostar on user click
     function motion(e){
         imposter.style.bottom = imposterBottomSpace + "px";
         console.log(e.key)
@@ -125,6 +132,8 @@ document.addEventListener("DOMContentLoaded",() => {
             motionDown();
         }
     }
+    
+    //Falling Imposter Rapidly on button down event
     function motionDown(){
         fall(10)
     }
@@ -132,7 +141,7 @@ document.addEventListener("DOMContentLoaded",() => {
     let isRightMotion=false;
     let leftMotion;
     let isLeftMotion=false;
-
+    //Moving imposter left
     function motionLeft(){
         if(isRightMotion){
             clearInterval(RightMotion);
@@ -153,6 +162,7 @@ document.addEventListener("DOMContentLoaded",() => {
         
         
     }
+    //Moving Imposter Right
     function motionRight(){
         if(isLeftMotion){
             clearInterval(leftMotion);
@@ -173,21 +183,21 @@ document.addEventListener("DOMContentLoaded",() => {
         },20)
         
     }
-
+    //Stop motion
     function motionStright(){
         isLeftMotion=false;
         isRightMotion=false;    
         clearInterval(RightMotion);
         clearInterval(leftMotion);
     }
-
+    //Start Game
     function Start(){
         if(!GameOver){
-            CreatePlatforms();
-            CreateImposter();
-            BaseMotion = setInterval(moveBase,30);
-            jump();
-            document.addEventListener("keyup",motion);
+            CreatePlatforms(); //Create Platforms
+            CreateImposter(); //Create Imposter
+            BaseMotion = setInterval(moveBase,30); //Moving Platform
+            jump(); //Jump for first time
+            document.addEventListener("keyup",motion); //Added event listener
         }
         
     }
